@@ -625,11 +625,6 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton(
-                      onPressed: () {}, // TODO: Implement forgot password
-                      child: Text("Forgot Password?", style: TextStyle(color: Colors.blue)),
-                    ),
-                    Text(" | "),
-                    TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,

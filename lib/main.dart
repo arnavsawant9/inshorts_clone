@@ -357,8 +357,10 @@ import 'home.dart';
 import 'search/searchpage.dart';
 import 'profile/profile.dart';
 import 'settings.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  await dotenv.load(fileName: "assets/.env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -410,7 +412,7 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
     SearchPage(),
     HomeScreen(),
     ProfileScreen(),
-    SettingsPage(),
+    // SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -431,7 +433,7 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,

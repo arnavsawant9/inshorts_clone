@@ -42,9 +42,10 @@ import 'dart:convert';
 import '../model/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class NewsApi {
-  static const String _apiKey = 'a96bce98719e5fe93e257c1f456697df';
+  static final String _apiKey = dotenv.env['API_KEY'] ?? '';
   static const String _baseUrl = 'https://gnews.io/api/v4';
 
   // Get top headlines
