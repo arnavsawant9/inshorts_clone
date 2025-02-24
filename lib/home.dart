@@ -758,7 +758,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> getTopNews() async {
     List<NewsModel> fetchedNews = await newsApi.getTopHeadlines('en');
     setState(() {
-      newsList = fetchedNews.take(4).toList();
+      newsList = fetchedNews.take(10).toList();
     });
   }
 

@@ -18,7 +18,7 @@ class _SearchPageState extends State<SearchPage> {
     if (query.isEmpty) return;
     List<NewsModel> fetchedNews = await newsApi.searchNews(query);
     setState(() {
-      searchResults = fetchedNews.take(4).toList(); // Max 4 results
+      searchResults = fetchedNews.take(8).toList(); // Max 8 results
     });
   }
 
@@ -29,6 +29,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE3F2FD), // Light blue background
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -36,19 +37,27 @@ class _SearchPageState extends State<SearchPage> {
             TextField(
               controller: searchController,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 hintText: "Search for news...",
-                border: OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () => searchNews(searchController.text),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30),
+                  borderSide: BorderSide.none,
                 ),
+                prefixIcon: Icon(Icons.search, color: Colors.blueAccent),
+                contentPadding: EdgeInsets.symmetric(vertical: 14),
               ),
               onSubmitted: searchNews,
             ),
             const SizedBox(height: 20),
             Expanded(
               child: searchResults.isEmpty
-                  ? const Center(child: Text("Search for articles"))
+                  ? const Center(
+                      child: Text(
+                        "Search for articles",
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    )
                   : ListView.builder(
                       itemCount: searchResults.length,
                       itemBuilder: (context, index) {
@@ -72,7 +81,15 @@ class _SearchPageState extends State<SearchPage> {
 
 class NewsCard extends StatelessWidget {
   final String? title, source, date, image, description, url;
-  const NewsCard({super.key, this.title, this.source, this.date, this.image, this.description, this.url});
+  const NewsCard({
+    Key? key,
+    this.title,
+    this.source,
+    this.date,
+    this.image,
+    this.description,
+    this.url,
+  }) : super(key: key);
 
   void _launchURL() async {
     if (url != null && await canLaunch(url!)) {
@@ -83,15 +100,44 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      elevation: 3,
       child: ListTile(
         leading: image != null && image!.isNotEmpty
-            ? Image.network(image!, width: 80, height: 80, fit: BoxFit.cover)
-            : const SizedBox(width: 80, height: 80),
-        title: Text(title ?? "No Title", style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Text('$source • $date'),
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  image!,
+                  width: 80,
+                  height: 80,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 80,
+                      height: 80,
+                      color: Colors.grey[300],
+                      child: Icon(Icons.broken_image, color: Colors.grey[700]),
+                    );
+                  },
+                ),
+              )
+            : Container(
+                width: 80,
+                height: 80,
+                color: Colors.grey[300],
+                child: Icon(Icons.image, color: Colors.grey[700]),
+              ),
+        title: Text(
+          title ?? "No Title",
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        subtitle: Text(
+          '$source • $date',
+          style: TextStyle(color: Colors.grey[600]),
+        ),
         trailing: IconButton(
-          icon: Icon(Icons.open_in_new),
+          icon: Icon(Icons.open_in_new, color: Colors.blueAccent),
           onPressed: _launchURL,
         ),
       ),
