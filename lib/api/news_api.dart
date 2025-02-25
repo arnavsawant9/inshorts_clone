@@ -9,7 +9,7 @@
 //     // Parse JSON
 //     // Return NewsModel object
 //     final uri = Uri.parse(
-//         'https://gnews.io/api/v4/top-headlines?category=business&country=in&lang=$lang&max=100&apikey=a96bce98719e5fe93e257c1f456697df');
+//         'https://gnews.io/api/v4/top-headlines?category=business&country=in&lang=$lang&max=100&apikey='YOUR_API_KEY');
 //     final response = await http.get(uri);
 //     if (response.statusCode == 200) {
 //       debugPrint(response.body);
@@ -23,9 +23,6 @@
 // }
 
 
-// //my api key 
-// //36d3c5703163e8e264c57a90ec1220a9
-// // b878d42562bf4494adce38169c6d71e0 - ves api
 
 
 
