@@ -347,6 +347,243 @@
 
 
 
+// perfectly working code
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'firebase_options.dart';
+// import 'login/login.dart';
+// import 'home.dart'; 
+// import 'search/searchpage.dart';
+// import 'profile/profile.dart';
+// import 'settings.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'summarizer/summarizer_page.dart'; // adjust import
+
+// void main() async {
+//   await dotenv.load(fileName: "assets/.env");
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: AuthWrapper(), // Decides screen based on authentication state
+//     );
+//   }
+// }
+
+// // ✅ Checks if user is logged in or not
+// class AuthWrapper extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<User?>(
+//       stream: FirebaseAuth.instance.authStateChanges(),
+//       builder: (context, snapshot) {
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Scaffold(body: Center(child: CircularProgressIndicator())); // Show loading spinner
+//         }
+        
+//         if (snapshot.hasData && FirebaseAuth.instance.currentUser != null) {
+//           return HomeScreenWrapper(); // ✅ If user is logged in, show home screen
+//         } 
+
+//         return LoginPage(); // ✅ If not logged in, show login page
+//       },
+//     );
+//   }
+// }
+
+// // ✅ Home with Bottom Navigation
+// class HomeScreenWrapper extends StatefulWidget {
+//   @override
+//   _HomeScreenWrapperState createState() => _HomeScreenWrapperState();
+// }
+
+// class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
+//   int _selectedIndex = 1;
+
+//   final List<Widget> _pages = [
+//     SearchPage(),
+//     HomeScreen(),
+//     ProfileScreen(),
+//     // SettingsPage(),
+//   ];
+
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: IndexedStack(
+//         index: _selectedIndex,
+//         children: _pages,
+//       ),
+//       bottomNavigationBar: BottomNavigationBar(
+//         items: const <BottomNavigationBarItem>[
+//           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+//           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
+//           // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+//         ],
+//         currentIndex: _selectedIndex,
+//         selectedItemColor: Colors.blue,
+//         unselectedItemColor: Colors.grey,
+//         onTap: _onItemTapped,
+//         type: BottomNavigationBarType.fixed,
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'firebase_options.dart';
+// import 'login/login.dart';
+// import 'home.dart'; 
+// import 'search/searchpage.dart';
+// import 'profile/profile.dart';
+// import 'settings.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'summarizer/summarizer_page.dart'; // ✅ Import added
+
+// void main() async {
+//   await dotenv.load(fileName: "assets/.env");
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: AuthWrapper(), // Decides screen based on authentication state
+//     );
+//   }
+// }
+
+// // ✅ Checks if user is logged in or not
+// class AuthWrapper extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return StreamBuilder<User?>(
+//       stream: FirebaseAuth.instance.authStateChanges(),
+//       builder: (context, snapshot) {
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Scaffold(body: Center(child: CircularProgressIndicator())); // Show loading spinner
+//         }
+
+//         if (snapshot.hasData && FirebaseAuth.instance.currentUser != null) {
+//           return HomeScreenWrapper(); // ✅ If user is logged in, show home screen
+//         }
+
+//         return LoginPage(); // ✅ If not logged in, show login page
+//       },
+//     );
+//   }
+// }
+
+// // ✅ Home with Bottom Navigation
+// class HomeScreenWrapper extends StatefulWidget {
+//   @override
+//   _HomeScreenWrapperState createState() => _HomeScreenWrapperState();
+// }
+
+// class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
+//   int _selectedIndex = 1;
+
+//   final List<Widget> _pages = [
+//     SearchPage(),
+//     HomeScreen(),
+//     ProfileScreen(),
+//     // SettingsPage(),
+//   ];
+
+//   void _onItemTapped(int index) {
+//     setState(() {
+//       _selectedIndex = index;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: IndexedStack(
+//         index: _selectedIndex,
+//         children: _pages,
+//       ),
+//       bottomNavigationBar: BottomNavigationBar(
+//         items: const <BottomNavigationBarItem>[
+//           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+//           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+//           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
+//           // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+//         ],
+//         currentIndex: _selectedIndex,
+//         selectedItemColor: Colors.blue,
+//         unselectedItemColor: Colors.grey,
+//         onTap: _onItemTapped,
+//         type: BottomNavigationBarType.fixed,
+//       ),
+
+//       // ✅ Summarizer button floating above nav bar
+//       floatingActionButton: FloatingActionButton.extended(
+//         onPressed: () {
+//           Navigator.push(
+//             context,
+//             MaterialPageRoute(builder: (context) => const SummarizerPage()),
+//           );
+//         },
+//         icon: const Icon(Icons.summarize),
+//         label: const Text("AI Summarizer"),
+//         backgroundColor: Colors.blueAccent,
+//       ),
+//       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+//     );
+//   }
+// }
+
+
+
+
+
+
+
+
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -358,6 +595,7 @@ import 'search/searchpage.dart';
 import 'profile/profile.dart';
 import 'settings.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'summarizer/summarizer_page.dart'; // ✅ Import added
 
 void main() async {
   await dotenv.load(fileName: "assets/.env");
@@ -388,10 +626,10 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(body: Center(child: CircularProgressIndicator())); // Show loading spinner
         }
-        
+
         if (snapshot.hasData && FirebaseAuth.instance.currentUser != null) {
           return HomeScreenWrapper(); // ✅ If user is logged in, show home screen
-        } 
+        }
 
         return LoginPage(); // ✅ If not logged in, show login page
       },
@@ -411,8 +649,8 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
   final List<Widget> _pages = [
     SearchPage(),
     HomeScreen(),
+    SummarizerPage(), // ✅ Added summarizer page
     ProfileScreen(),
-    // SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -432,8 +670,8 @@ class _HomeScreenWrapperState extends State<HomeScreenWrapper> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.summarize), label: 'Summarizer'), // ✅ New tab
           BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Profile'),
-          // BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
