@@ -933,30 +933,30 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
                 SizedBox(height: 20),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      User? user = await signInWithGoogle();
-                      if (user != null) {
-                        print('Logged in as: ${user.displayName}');
-                        // Redirect to home screen
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      side: BorderSide(color: Colors.grey),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Sign in with Google', style: TextStyle(color: Colors.black, fontSize: 16)),
-                      ],
-                    ),
-                  ),
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   child: ElevatedButton(
+                //     onPressed: () async {
+                //       User? user = await signInWithGoogle();
+                //       if (user != null) {
+                //         print('Logged in as: ${user.displayName}');
+                //         // Redirect to home screen
+                //       }
+                //     },
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.white,
+                //       padding: EdgeInsets.symmetric(vertical: 12),
+                //       side: BorderSide(color: Colors.grey),
+                //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                //     ),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         Text('Sign in with Google', style: TextStyle(color: Colors.black, fontSize: 16)),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
